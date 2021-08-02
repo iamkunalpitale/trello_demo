@@ -222,56 +222,58 @@ class _HomePageState extends State<HomePage> {
             ),
             margin: const EdgeInsets.all(16.0),
             height: MediaQuery.of(context).size.height * 0.8,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    cards[index],
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      cards[index],
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                SingleChildScrollView(
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.6,
-                    child: DragAndDropList<String>(
-                      children[index],
-                      itemBuilder: (BuildContext context, item) {
-                        return _buildCardTask(
-                            index, children[index].indexOf(item));
-                      },
-                      onDragFinish: (oldIndex, newIndex) {
-                        _handleReOrder(oldIndex, newIndex, index);
-                      },
-                      canBeDraggedTo: (one, two) => true,
-                      dragElevation: 8.0,
+                  SingleChildScrollView(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.6,
+                      child: DragAndDropList<String>(
+                        children[index],
+                        itemBuilder: (BuildContext context, item) {
+                          return _buildCardTask(
+                              index, children[index].indexOf(item));
+                        },
+                        onDragFinish: (oldIndex, newIndex) {
+                          _handleReOrder(oldIndex, newIndex, index);
+                        },
+                        canBeDraggedTo: (one, two) => true,
+                        dragElevation: 8.0,
+                      ),
                     ),
                   ),
-                ),
-                InkWell(
-                  onTap: () {
-                    _showAddCardTask(index);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.add,
-                        ),
-                        SizedBox(
-                          width: 16.0,
-                        ),
-                        Text("Add a Card"),
-                      ],
+                  InkWell(
+                    onTap: () {
+                      _showAddCardTask(index);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.add,
+                          ),
+                          SizedBox(
+                            width: 16.0,
+                          ),
+                          Text("Add a Card"),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
 
